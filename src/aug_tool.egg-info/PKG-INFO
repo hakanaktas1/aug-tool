@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: aug-tool
+Version: 0.0.1
+Summary: A small package to increase your data for your machine learning project
+Home-page: https://github.com/hakanaktas1/aug-tool
+Author: Hakan Aktaş
+Author-email: hakanaktas4541@gmail.com
+Project-URL: Bug Tracker, https://github.com/hakanaktas1/aug-tool
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENCE

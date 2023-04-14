@@ -1,0 +1,11 @@
+LICENCE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.cfg
+src/aug-tool/Augmentation.py
+src/aug-tool/__init__.py
+src/aug_tool.egg-info/PKG-INFO
+src/aug_tool.egg-info/SOURCES.txt
+src/aug_tool.egg-info/dependency_links.txt
+src/aug_tool.egg-info/top_level.txt

@@ -1,7 +1,8 @@
 import random
 from bs4 import BeautifulSoup
 from PIL import Image, ImageEnhance, ImageFilter
-
+from importlib import resources
+import io
 
 class Augmentor:
 
@@ -110,7 +111,12 @@ class Augmentor:
         It takes an image and pastes it on top of another image.
         """
 
-        effect1_img = Image.open(r"C:\Users\hakan.aktas\Desktop\deneme\effect\effect_" + str(random.randint(1, 2)) + ".png")
+        effect1_img = "C:\Users\hakan.aktas\Desktop\deneme\effect\effect_" + str(random.randint(1, 2)) + ".png"
+        
+        with resources.open_binary('aug-tool', effect1_img) as fp:
+            effect_img = fp.read()
+        effect_img = Image.open(io.BytesIO(effect_img))
+
         effect1_img = effect1_img.resize((self.width, self.height))
         self.image_aug.paste(effect1_img, (0, 0), mask=effect1_img)
 
