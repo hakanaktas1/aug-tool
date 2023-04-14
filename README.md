@@ -1,3 +1,3 @@
 
-#Aug-Tool 
-![icon](src\aug-tool\logo.png)
+# Aug-Tool 
+![icon](/src/aug-tool/logo.png)
