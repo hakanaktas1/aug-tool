@@ -15,14 +15,14 @@ Aug-tool is a Python library for data augmentation in machine learning projects.
 
 
 ```python
-pip install Hakan
+pip install aug-tool
 ```
 
 
 To install "aug-tool", you can use pip, the Python package manager. Open a terminal or command prompt and run the following command:
 
 ```python
-  pip install aug-tool
+pip install aug-tool
 ```
 This will download and install the "aug-tool" library and its dependencies to your Python environment.
 
@@ -30,17 +30,17 @@ Alternatively, you can also install "aug-tool" from a source code repository. He
 
 1.  Clone the "aug-tool" repository from GitHub:
 ```python
-  git clone https://github.com/hakanaktas1/aug-tool.git
+git clone https://github.com/hakanaktas1/aug-tool.git
 ```
 
 2. Navigate to the cloned directory:
 
 ```python
-  cd aug-tool
+cd aug-tool
 ```
 3. Install the library using pip:
 ```python
-  pip install .
+pip install .
 ```
 # Features
 
