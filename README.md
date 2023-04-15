@@ -15,7 +15,7 @@ Aug-tool is a Python library for data augmentation in machine learning projects.
 
 
 ```python
-pip install aug-tool
+pip install Hakan
 ```
 
 
