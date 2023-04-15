@@ -13,6 +13,12 @@ Aug-tool is a Python library for data augmentation in machine learning projects.
 
 # Installation
 
+
+```python
+pip install Augmentor
+```
+
+
 To install "aug-tool", you can use pip, the Python package manager. Open a terminal or command prompt and run the following command:
 
 ```python
