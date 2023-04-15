@@ -27,3 +27,20 @@ Alternatively, you can also install "aug-tool" from a source code repository. He
   git clone https://github.com/hakanaktas1/aug-tool.git
 ```
 
+2. Navigate to the cloned directory:
+
+```
+  cd aug-tool
+```
+3. Install the library using pip:
+```
+  pip install .
+```
+# Features
+
+* Supports various image  augmentation techniques suitable for real environment conditions, such as adding noise, scaling, shifting, and more.
+* Provides convenient integration with popular machine learning libraries such as **TensorFlow**, **Keras**, **PyTorch**, etc.
+* Allows augmentation of both images and their annotation files in formats such as XML, or TXT. (json will be added soon)
+* Customizable augmentation parameters, including rotation angle, scaling factor, flipping direction, and more.
+
+* Supports augmentation of multiple images and annotation files in batch mode.
