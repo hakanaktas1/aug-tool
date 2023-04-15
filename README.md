@@ -2,7 +2,7 @@
 
 <p align="center">
     <br>
-    <img src="src\aug-tool\logo.png"/>
+    <img src="src\aug-tool\logo2.png"/>
     <br>
 <p>
 
