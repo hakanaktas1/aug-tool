@@ -61,15 +61,22 @@ class Factory(object):
         try:
             os.mkdir(target)
         except:
-            logging.exception('')
+            logging.exception('there is a folder ')
             
     @staticmethod
     def create_list_of_data(open_data_path) -> list:
         try:
-            files = []
-            for ext in ('*.jpg', '*.png', '*.jpeg'):
-                files.extend(glob(join(open_data_path, ext)))  
-                return files  
+  
+            image_extensions = ['.jpg', '.jpeg', '.png']
+            image_files = []
+
+            for file in os.listdir(open_data_path):
+                if os.path.isfile(os.path.join(open_data_path, file)):
+                    ext = os.path.splitext(file)[1].lower()
+                    if ext in image_extensions:
+                        image_files.append(os.path.join(open_data_path, file))
+
+            return image_files
         except:
             logging.exception('')
             
@@ -86,19 +93,23 @@ class Factory(object):
             self.ann = dataOpener.TxtFileOpener(path + ".txt")
        
         else:
-            logging.exception('There is not any annotation file that has ext such as .xml or .txt in this directory')
+            logging.exception('There is no any annotation file that has ext such as .xml or .txt in this directory')
             
     def image_factory(self, path:str):
         try:
             self.img = dataOpener.ImgOpener(path)
         except:
             logging.exception('Could not open image file. (Check its extension.)')
-            
+        
+        
+        
+  
             
 if __name__ == '__main__':
     
-    open_file_name = "C:\Users\hakan.aktas\Desktop\save\animal1"
-    save_file_name = "C:\Users\hakan.aktas\Desktop\save\animal2"
+    open_file_name = r"C:\Users\hakan.aktas\Desktop\save\animal1"
+
+    save_file_name = r"C:\Users\hakan.aktas\Desktop\save\animal2"
     number_of_aug = 5
     
     Factory(open_data_path=open_file_name,

@@ -1,7 +1,5 @@
 from PIL import Image
 from .dataOp import DataOpener
-
-
 # The ImgOpener class is a subclass of the DataOpener class in Python.
 class ImgOpener(DataOpener):
     
@@ -24,7 +22,11 @@ class ImgOpener(DataOpener):
         """
         The function "open_data" returns an Image object.
         """
-        return Image.open(self.data_name)
+        try:
+            return Image.open(self.data_name)
+        except:
+            return None
+    
     
     def __repr__(self) -> str:
         return super().__repr__()

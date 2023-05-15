@@ -8,10 +8,9 @@ class ImgAug(DataAug):
     
     def __init__(self, image, x_shift: int, y_shift: int, brigness: bool = False, contrast:bool = False, sharpen: bool = False) -> None:
         super().__init__(image, x_shift, y_shift)
-        self.image = image    
-        self.brigness = brigness
-        self.contrast = contrast
-        self.sharpen = sharpen  
+        self.carve_out()
+        self.apply_adj()
+
 
     def carve_out(self):
         
