@@ -5,7 +5,7 @@ from .dataSav import DataSaver
 class AnnSav(DataSaver):
     
     def __init__(self, target_file_path: str, ann_aug, data_name: str) -> None:
-        super().__init__(target_file_path, ann_aug, data_name)
+        super().__init__(target_file_path,None, ann_aug, data_name)
     
     def dataSaver(self):
         pass

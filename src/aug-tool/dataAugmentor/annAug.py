@@ -7,7 +7,7 @@ class AnnAug(DataAug, ABC):
     new_cords = None
     
     def __init__(self, name: str, annotate, x_shift: int, y_shift: int) -> None:
-        super().__init__(name, annotate, x_shift, y_shift)
+        super().__init__(name, None, annotate, x_shift, y_shift)
         
     @abstractmethod
     def create_new_cords(self):

@@ -6,24 +6,30 @@ class ImgAug(DataAug):
     
     rotate_rate = None
     
-    def __init__(self, image, x_shift: int, y_shift: int, brigness: bool = False, contrast:bool = False, sharpen: bool = False) -> None:
-        super().__init__(image, x_shift, y_shift)
+    def __init__(self, image, x_shift: int, y_shift: int, contrast:bool = False, brigness:bool = False, sharpen:bool = False ) -> None:
+        super().__init__(None, image, None, x_shift, y_shift)
+        self.contrast = contrast
+        self.brigness = brigness
+        self.sharpen = sharpen
+        self.aug_image = None   
         self.carve_out()
         self.apply_adj()
+        
 
 
+        
     def carve_out(self):
         
         image_aug = self.image
         image_aug = image_aug.filter(ImageFilter.BoxBlur(5))
 
-        width, height = image.size
+        width, height = self.image.size
         
-        image = image.crop((int(self.x_shift), int(self.y_shift),
+        self.image = self.image.crop((int(self.x_shift), int(self.y_shift),
                             width - int(self.x_shift), height - int(self.y_shift)))
         # img1 = img1.rotate(5, fillcolor=(1,0,0), expand=False)
 
-        image_aug.paste(image, (int(self.get_random_x), int(self.get_random_y)))
+        image_aug.paste(self.image, (int(self.get_random_x), int(self.get_random_y)))
     
     def apply_adj(self):
         

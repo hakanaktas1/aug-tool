@@ -25,17 +25,20 @@ class Factory(object):
             for num in range(number_of_aug):
                 
                 data_name = data_path.split("\\")[-1][:-4] + "_aug" + str(num + 1)
+                
+                image = dataAugmentor.ImgAug(image=self.img,
+                                        x_shift=x_shift,
+                                        y_shift=y_shift).image
+                
     
                 dataSaver.ImgSav(target_file_path = self.target_file_name,
-                                 img_aug = dataAugmentor.ImgAug(image=self.img,
-                                                                x_shift=x_shift,
-                                                                y_shift=y_shift).image,
+                                 img_aug = image,
                                  data_name=data_name)
                 
-                if self.ann == "xml":
+                if self.ann.ext == ".xml":
                     dataSaver.XmlSav(target_file_path = self.target_file_name,
                                     ann_aug=dataAugmentor.XmlAug(name=data_name,
-                                                                annotate= self.ann,
+                                                                annotate= self.ann.data,
                                                                 x_shift=x_shift,
                                                                 y_shift=y_shift),
                                     data_name=data_name)
@@ -97,7 +100,7 @@ class Factory(object):
             
     def image_factory(self, path:str):
         try:
-            self.img = dataOpener.ImgOpener(path)
+            self.img = dataOpener.ImgOpener(path).data
         except:
             logging.exception('Could not open image file. (Check its extension.)')
         
