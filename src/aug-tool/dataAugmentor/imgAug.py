@@ -6,8 +6,8 @@ class ImgAug(DataAug):
     
     rotate_rate = None
     
-    def __init__(self, name: str, image, annotate, x_shift: int, y_shift: int, brigness: bool, contrast:bool, sharpen: bool) -> None:
-        super().__init__(name, image, annotate, x_shift, y_shift)
+    def __init__(self, image, x_shift: int, y_shift: int, brigness: bool = False, contrast:bool = False, sharpen: bool = False) -> None:
+        super().__init__(image, x_shift, y_shift)
         self.image = image    
         self.brigness = brigness
         self.contrast = contrast
