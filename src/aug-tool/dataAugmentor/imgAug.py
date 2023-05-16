@@ -20,7 +20,7 @@ class ImgAug(DataAug):
         
     def carve_out(self):
         
-        image_aug = self.image
+        image_aug = self.image.copy()
         image_aug = image_aug.filter(ImageFilter.BoxBlur(5))
 
         width, height = self.image.size

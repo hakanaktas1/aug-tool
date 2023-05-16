@@ -26,22 +26,26 @@ class Factory(object):
                 
                 data_name = data_path.split("\\")[-1][:-4] + "_aug" + str(num + 1)
                 
-                image = dataAugmentor.ImgAug(image=self.img,
+                aug_image = dataAugmentor.ImgAug(image=self.img,
                                         x_shift=x_shift,
-                                        y_shift=y_shift).image
+                                        y_shift=y_shift).aug_image
                 
     
                 dataSaver.ImgSav(target_file_path = self.target_file_name,
-                                 img_aug = image,
+                                 img_aug = aug_image,
                                  data_name=data_name)
                 
                 if self.ann.ext == ".xml":
+                    
+                    ann_aug = dataAugmentor.XmlAug(name=data_name,
+                                                annotate= self.ann.data,
+                                                x_shift=x_shift,
+                                                y_shift=y_shift)
+                    
                     dataSaver.XmlSav(target_file_path = self.target_file_name,
-                                    ann_aug=dataAugmentor.XmlAug(name=data_name,
-                                                                annotate= self.ann.data,
-                                                                x_shift=x_shift,
-                                                                y_shift=y_shift),
-                                    data_name=data_name)
+                                                                ann_aug=ann_aug.annotate,
+                                                                data_name=data_name)
+
                     
                 elif self.ann == "txt":
                     dataSaver.TxtSav(target_file_path = self.target_file_name,
