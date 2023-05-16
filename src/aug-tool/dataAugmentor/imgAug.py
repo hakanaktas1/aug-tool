@@ -48,12 +48,12 @@ class ImgAug(DataAug):
             lucky_shot = random.randint(0, len(queue) - 1)
 
             if "Brigness" == queue[lucky_shot]:
-                self.image = ImageEnhance.Brightness(self.image)
+                self.aug_image = ImageEnhance.Brightness(self.aug_image)
             elif "Contrast" == queue[lucky_shot]:
-                self.image = ImageEnhance.Contrast(self.image)
+                self.aug_image = ImageEnhance.Contrast(self.aug_image)
             elif "Sharpness" == queue[lucky_shot]:
-                self.image = ImageEnhance.Sharpness(self.image)
+                self.aug_image = ImageEnhance.Sharpness(self.aug_image)
 
-            self.image = self.image.enhance(brig_factor)
+            self.aug_image = self.aug_image.enhance(brig_factor)
         else:
             pass
