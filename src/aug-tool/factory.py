@@ -46,12 +46,14 @@ class Factory(object):
                                                                 data_name=data_name)
 
                     
-                elif self.ann == "txt":
+                elif self.ann.ext == ".txt":
                     
-                    ann_aug = dataAugmentor.TxtAug(name=data_name,
-                                                annotate= self.ann,
+                    ann_aug = dataAugmentor.TxtAug(
+                                                annotate= self.ann.data,
                                                 x_shift=x_shift,
-                                                y_shift=y_shift)
+                                                y_shift=y_shift,
+                                                width=aug_image.width,
+                                                height=aug_image.height).aug_anotate
                     
                     dataSaver.TxtSav(target_file_path = self.target_file_name,
                                      ann_aug=ann_aug,
@@ -134,10 +136,9 @@ if __name__ == '__main__':
     open_file_name = r"C:\Users\hakan.aktas\Desktop\save\animal1"
     save_file_name = r"C:\Users\hakan.aktas\Desktop\save\animal2"
     
-    number_of_aug = 2
-    
+    number_of_aug = 12
     Factory(open_data_path=open_file_name,
             save_file_name=save_file_name,
             number_of_aug=number_of_aug,
-            x_shift=15,
-            y_shift=15)
+            x_shift=33,
+            y_shift=33)

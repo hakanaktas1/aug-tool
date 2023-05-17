@@ -29,9 +29,7 @@ class TxtFileOpener(AnnotationOpener):
         This function returns an IO object for reading data.
         """
         try:
-            with open(self.data_name, self.mode) as f:
-                txt_data = f.read()
-            return txt_data
+            return open(self.data_name, "r+") 
         
         except Exception as e:
             print(f"An error occurred while opening file {self.data_name}: {e}")

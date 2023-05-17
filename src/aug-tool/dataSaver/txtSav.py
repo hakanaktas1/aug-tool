@@ -11,5 +11,6 @@ class TxtSav(AnnSav):
     def dataSaver(self):
         
         with open(self.target_file_path + '\\' + self.data_name + '.txt', 'w') as f:
-            
-            f.write(str(self.ann_aug))
+
+            for line in self.ann_aug:
+                f.write(line + "\n")
