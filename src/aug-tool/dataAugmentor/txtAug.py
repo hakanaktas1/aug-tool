@@ -5,6 +5,7 @@ class TxtAug(AnnAug):
         super().__init__(name, annotate, x_shift, y_shift)
 
     def create_new_cords(self):
+        
         pass   
 
     def write_new_cords(self):

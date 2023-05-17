@@ -14,7 +14,6 @@ class Factory(object):
         self.ann = None
         self.img = None
         
-        
         self.create_dest_folder(self.target_file_name)
         
         for data_path in self.create_list_of_data(open_data_path = open_data_path):
@@ -28,7 +27,7 @@ class Factory(object):
                 
                 aug_image = dataAugmentor.ImgAug(image=self.img,
                                         x_shift=x_shift,
-                                        y_shift=y_shift).aug_image
+                                        y_shift=y_shift).image_aug
                 
     
                 dataSaver.ImgSav(target_file_path = self.target_file_name,
@@ -48,14 +47,18 @@ class Factory(object):
 
                     
                 elif self.ann == "txt":
+                    
+                    ann_aug = dataAugmentor.TxtAug(name=data_name,
+                                                annotate= self.ann,
+                                                x_shift=x_shift,
+                                                y_shift=y_shift)
+                    
                     dataSaver.TxtSav(target_file_path = self.target_file_name,
-                                    ann_aug=dataAugmentor.TxtAug(name=data_name,
-                                                                annotate= self.ann,
-                                                                x_shift=x_shift,
-                                                                y_shift=y_shift),
+                                     ann_aug=ann_aug,
                                     data_name=data_name)
                 else:
-                    logging.exception('There is no annonation file!')
+                    logging.exception('There is no annonation file!') 
+                    
     
         
         
@@ -65,30 +68,47 @@ class Factory(object):
     
     @staticmethod
     def create_dest_folder(target):
-        try:
-            os.mkdir(target)
-        except:
-            logging.exception('there is a folder ')
+
+        if not os.path.exists(target):
+            try:
+                os.mkdir(target)
+            except:
+                logging.exception('Could not create folder! ')
+        else:
+            logging.exception('There is already folder!')
             
     @staticmethod
     def create_list_of_data(open_data_path) -> list:
+        """
+        The function "create_list_of_data" takes a file path as input and returns a list of data.
+        
+        :param open_data_path: The parameter `open_data_path` is expected to be a string representing the
+        file path of a data file that needs to be opened and read. The function `create_list_of_data` will
+        read the data from this file and return it as a list
+        """
         try:
-  
             image_extensions = ['.jpg', '.jpeg', '.png']
             image_files = []
 
             for file in os.listdir(open_data_path):
+                
                 if os.path.isfile(os.path.join(open_data_path, file)):
+                    
                     ext = os.path.splitext(file)[1].lower()
                     if ext in image_extensions:
+                        
                         image_files.append(os.path.join(open_data_path, file))
 
             return image_files
         except:
             logging.exception('')
-            
+    
+    
     @property
     def target_file_name(self) -> str:
+        """
+        This function returns a string representing the target file name.
+        """
         return str(self.save_file_name) + "/aug_" + str(self.open_data_path.split("\\")[-1])
     
     def label_factory(self, path:str):
@@ -108,16 +128,13 @@ class Factory(object):
         except:
             logging.exception('Could not open image file. (Check its extension.)')
         
-        
-        
-  
-            
+
 if __name__ == '__main__':
     
     open_file_name = r"C:\Users\hakan.aktas\Desktop\save\animal1"
-
     save_file_name = r"C:\Users\hakan.aktas\Desktop\save\animal2"
-    number_of_aug = 5
+    
+    number_of_aug = 2
     
     Factory(open_data_path=open_file_name,
             save_file_name=save_file_name,

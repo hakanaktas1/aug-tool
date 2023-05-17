@@ -11,7 +11,7 @@ class ImgAug(DataAug):
         self.contrast = contrast
         self.brigness = brigness
         self.sharpen = sharpen
-        self.aug_image = None   
+        self.image_aug = None   
         self.carve_out()
         self.apply_adj()
         
@@ -20,8 +20,8 @@ class ImgAug(DataAug):
         
     def carve_out(self):
         
-        image_aug = self.image.copy()
-        image_aug = image_aug.filter(ImageFilter.BoxBlur(5))
+        self.image_aug = self.image.copy()
+        self.image_aug = self.image_aug.filter(ImageFilter.BoxBlur(5))
 
         width, height = self.image.size
         
@@ -29,7 +29,7 @@ class ImgAug(DataAug):
                             width - int(self.x_shift), height - int(self.y_shift)))
         # img1 = img1.rotate(5, fillcolor=(1,0,0), expand=False)
 
-        image_aug.paste(self.image, (int(self.get_random_x), int(self.get_random_y)))
+        self.image_aug.paste(self.image, (int(self.get_random_x), int(self.get_random_y)))
     
     def apply_adj(self):
         
@@ -48,12 +48,12 @@ class ImgAug(DataAug):
             lucky_shot = random.randint(0, len(queue) - 1)
 
             if "Brigness" == queue[lucky_shot]:
-                self.aug_image = ImageEnhance.Brightness(self.aug_image)
+                self.image_aug = ImageEnhance.Brightness(self.image_aug)
             elif "Contrast" == queue[lucky_shot]:
-                self.aug_image = ImageEnhance.Contrast(self.aug_image)
+                self.image_aug = ImageEnhance.Contrast(self.image_aug)
             elif "Sharpness" == queue[lucky_shot]:
-                self.aug_image = ImageEnhance.Sharpness(self.aug_image)
+                self.image_aug = ImageEnhance.Sharpness(self.image_aug)
 
-            self.aug_image = self.aug_image.enhance(brig_factor)
+            self.image_aug = self.image_aug.enhance(brig_factor)
         else:
             pass
