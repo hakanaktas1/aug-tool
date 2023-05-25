@@ -7,7 +7,7 @@ import logging
 import glob
 
 
-class Factory(object):
+class Augmentation(object):
     def __init__(self, open_data_path:str, save_file_name:str, number_of_aug:int, x_shift:int, y_shift:int) -> None:
         self.open_data_path = open_data_path
         self.save_file_name = save_file_name
@@ -89,7 +89,6 @@ class Factory(object):
         read the data from this file and return it as a list
         """
         try:
-            raise Exception("foto asdasd")
             image_extensions = ['.jpg', '.jpeg', '.png']
             image_files = []
 
@@ -104,7 +103,7 @@ class Factory(object):
 
             return image_files
         except:
-            logging.exception('Deneme Okta kardesim icin')
+            logging.exception('')
     
     
     @property
@@ -137,9 +136,9 @@ if __name__ == '__main__':
     open_file_name = r"C:\Users\hakan.aktas\Desktop\save\animal1"
     save_file_name = r"C:\Users\hakan.aktas\Desktop\save\animal2"
     
-    number_of_aug = 2,
+    number_of_aug = 2
     
-    Factory(open_data_path=open_file_name,
+    Augmentation(open_data_path=open_file_name,
             save_file_name=save_file_name,
             number_of_aug=number_of_aug,
             x_shift=33,

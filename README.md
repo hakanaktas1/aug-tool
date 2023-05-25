@@ -50,3 +50,23 @@ pip install .
 * Customizable augmentation parameters, including rotation angle, scaling factor, flipping direction, and more.
 
 * Supports augmentation of multiple images and annotation files in batch mode.
+
+
+```python
+from aug_tool import Augmentation
+
+# Specify the input parameters
+open_file_name = r"C:\Users\user.name\Desktop\datas\org" #Path to the data folder
+save_file_name = r"C:\Users\user.name\Desktop\datas\augmented"#Path to the data folder
+
+number_of_aug = 2 # Number of augmented data to generate
+
+# Apply data augmentation using aug-tool
+Augmentation(open_data_path=open_file_name,
+        save_file_name=save_file_name,
+        number_of_aug=number_of_aug,
+        x_shift=15,
+        y_shift=15)
+
+ # Continue with further processing or analysis
+```
