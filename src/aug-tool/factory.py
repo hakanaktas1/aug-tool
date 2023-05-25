@@ -89,6 +89,7 @@ class Factory(object):
         read the data from this file and return it as a list
         """
         try:
+            raise Exception("foto asdasd")
             image_extensions = ['.jpg', '.jpeg', '.png']
             image_files = []
 
@@ -103,7 +104,7 @@ class Factory(object):
 
             return image_files
         except:
-            logging.exception('')
+            logging.exception('Deneme Okta kardesim icin')
     
     
     @property
@@ -136,7 +137,8 @@ if __name__ == '__main__':
     open_file_name = r"C:\Users\hakan.aktas\Desktop\save\animal1"
     save_file_name = r"C:\Users\hakan.aktas\Desktop\save\animal2"
     
-    number_of_aug = 12
+    number_of_aug = 2,
+    
     Factory(open_data_path=open_file_name,
             save_file_name=save_file_name,
             number_of_aug=number_of_aug,
