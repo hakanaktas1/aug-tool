@@ -5,7 +5,7 @@
     <img src ="icons\logo.png"/>
     <br>
 <p>
-
+ 
 
 [![PyPI](https://img.shields.io/badge/aug--tool-v0.0.1-blue)](https://pypi.org/project/aug-tool/)
 [![Supported Python Versions](https://img.shields.io/badge/python%20-3-blue)](https://pypi.python.org/pypi/Augmentor)
@@ -13,7 +13,7 @@
 
 # AUG-TOOL: Image Augmentation Tool for Machine Learning Projects 
 
-Seamlessly integrate powerful language models like ChatGPT into scikit-learn for enhanced text analysis tasks.
+Aug Tool is a Python library available on PyPI that simplifies image data augmentation for machine learning tasks, compatible with TensorFlow, PyTorch, and the YOLO library.
 
 ## Installation
 
@@ -29,10 +29,10 @@ To install "aug-tool", you can use pip, the Python package manager. Open a termi
 
 * Supports various image  augmentation techniques suitable for real environment conditions, such as adding noise, scaling, shifting, and more.
 * Provides convenient integration with popular machine learning libraries such as **TensorFlow**, **Keras**, **PyTorch**, etc.
-* Allows augmentation of both images and their annotation files in formats such as XML, or TXT. (json will be added soon)
+* Allows augmentation of both images and their annotation files in formats such as XML, or TXT. 
 * Customizable augmentation parameters, including rotation angle, scaling factor, flipping direction, and more.
 
-* Supports augmentation of multiple images and annotation files in batch mode.
+
 
 ## Documentation
 ### Simple usage:
@@ -56,4 +56,33 @@ Augmentation(open_data_path=open_file_name,
  # Continue with further processing or analysis
 ```
 
-### Package Structure:
+### Package Structure Diagram:
+
+```python
+src/ #root file
+└── aug_tool/ #main package
+    ├── __init__.py
+    ├── dataOpener/ #sub package1
+    │   ├── __init__.py
+    │   ├── dataOp.py
+    │   ├── imgOp.py
+    │   ├── annOp.py
+    │   ├── xmlOp.py
+    │   └── txtOp.py
+    ├── dataAugmentor/ #sub package2
+    │   ├── __init__.py
+    │   ├── dataAug.py
+    │   ├── imgAug.py
+    │   ├── annAug.py
+    │   ├── xmlAug.py
+    │   └── txtAug.py
+    ├── dataSaver/ #sub package3
+    │   ├── __init__.py
+    │   ├── dataSav.py
+    │   ├── imgSav.py
+    │   ├── annSav.pys
+    │   ├── xmlSav.py
+    │   └── txtSav.py
+    └── augmentation.py
+```
+### Class Diagram:

@@ -9,23 +9,39 @@ import glob
 
 class Augmentation(object):
     def __init__(self, open_data_path:str, save_file_name:str, number_of_aug:int, x_shift:int, y_shift:int) -> None:
+        """
+        This is an initialization function that takes in parameters for data augmentation and saves the
+        augmented data and annotations to a specified file path.
+        
+        :param open_data_path: The path to the directory containing the original data to be augmented
+        :type open_data_path: str
+        :param save_file_name: The name of the folder where the augmented data will be saved
+        :type save_file_name: str
+        :param number_of_aug: The number of times the image and its corresponding annotation will be
+        augmented
+        :type number_of_aug: int
+        :param x_shift: The amount of horizontal shift to apply during image augmentation
+        :type x_shift: int
+        :param y_shift: y_shift is a parameter that determines the maximum number of pixels by which an
+        image can be shifted vertically during data augmentation
+        :type y_shift: int
+        """
+        
         self.open_data_path = open_data_path
         self.save_file_name = save_file_name
-        self.ann = None
-        self.img = None
-        
+
         self.create_dest_folder(self.target_file_name)
         
         for data_path in self.create_list_of_data(open_data_path = open_data_path):
             
-            self.label_factory(data_path[:-4])
-            self.image_factory(data_path)
+            image = self.label_factory(data_path[:-4])
+            label = self.image_factory(data_path)
             
             for num in range(number_of_aug):
                 
                 data_name = data_path.split("\\")[-1][:-4] + "_aug" + str(num + 1)
                 
-                aug_image = dataAugmentor.ImgAug(image=self.img,
+                aug_image = dataAugmentor.ImgAug(image=image,
                                         x_shift=x_shift,
                                         y_shift=y_shift).image_aug
                 
@@ -37,7 +53,7 @@ class Augmentation(object):
                 if self.ann.ext == ".xml":
                     
                     ann_aug = dataAugmentor.XmlAug(name=data_name,
-                                                annotate= self.ann.data,
+                                                annotate= label.data,
                                                 x_shift=x_shift,
                                                 y_shift=y_shift)
                     
@@ -49,7 +65,7 @@ class Augmentation(object):
                 elif self.ann.ext == ".txt":
                     
                     ann_aug = dataAugmentor.TxtAug(
-                                                annotate= self.ann.data,
+                                                annotate= label.data,
                                                 x_shift=x_shift,
                                                 y_shift=y_shift,
                                                 width=aug_image.width,
@@ -116,17 +132,17 @@ class Augmentation(object):
     def label_factory(self, path:str):
         
         if os.path.exists(path + ".xml"):
-            self.ann = dataOpener.XmlFileOpener(path + ".xml")
+            return dataOpener.XmlFileOpener(path + ".xml")
 
         elif os.path.exists(path + ".txt"):
-            self.ann = dataOpener.TxtFileOpener(path + ".txt")
+            return dataOpener.TxtFileOpener(path + ".txt")
        
         else:
             logging.exception('There is no any annotation file that has ext such as .xml or .txt in this directory')
             
     def image_factory(self, path:str):
         try:
-            self.img = dataOpener.ImgOpener(path).data
+            return dataOpener.ImgOpener(path).data
         except:
             logging.exception('Could not open image file. (Check its extension.)')
         
