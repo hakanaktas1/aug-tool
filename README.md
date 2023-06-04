@@ -2,47 +2,30 @@
 
 <p align="center">
     <br>
-    <img src="src\aug-tool\logo2.png"/>
+    <img src ="icons\logo.png"/>
     <br>
 <p>
-Aug-tool is a Python library for data augmentation in machine learning projects. Easily enhance your dataset size by augmenting images and annotation files with customizable transformations. Aug-tool supports popular frameworks like TensorFlow and PyTorch, and seamlessly integrates into your workflow. Boost your model's performance with aug-tool!
+
 
 [![PyPI](https://img.shields.io/badge/aug--tool-v0.0.1-blue)](https://pypi.org/project/aug-tool/)
 [![Supported Python Versions](https://img.shields.io/badge/python%20-3-blue)](https://pypi.python.org/pypi/Augmentor)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE)
 
-# Installation
+# AUG-TOOL: Image Augmentation Tool for Machine Learning Projects 
+
+Seamlessly integrate powerful language models like ChatGPT into scikit-learn for enhanced text analysis tasks.
+
+## Installation
 
 
 ```python
 pip install aug-tool
 ```
-
 
 To install "aug-tool", you can use pip, the Python package manager. Open a terminal or command prompt and run the following command:
 
-```python
-pip install aug-tool
-```
-This will download and install the "aug-tool" library and its dependencies to your Python environment.
 
-Alternatively, you can also install "aug-tool" from a source code repository. Here are the steps:
-
-1.  Clone the "aug-tool" repository from GitHub:
-```python
-git clone https://github.com/hakanaktas1/aug-tool.git
-```
-
-2. Navigate to the cloned directory:
-
-```python
-cd aug-tool
-```
-3. Install the library using pip:
-```python
-pip install .
-```
-# Features
+## Features
 
 * Supports various image  augmentation techniques suitable for real environment conditions, such as adding noise, scaling, shifting, and more.
 * Provides convenient integration with popular machine learning libraries such as **TensorFlow**, **Keras**, **PyTorch**, etc.
@@ -51,12 +34,14 @@ pip install .
 
 * Supports augmentation of multiple images and annotation files in batch mode.
 
-
+## Documentation
+### Simple usage:
 ```python
 from aug_tool import Augmentation
 
 # Specify the input parameters
-open_file_name = r"C:\Users\user.name\Desktop\datas\org" #Path to the data folder
+open_file_name = r"C:\Users\user.name\Desktop\datas\orginal" #Path to the data folder
+
 save_file_name = r"C:\Users\user.name\Desktop\datas\augmented"#Path to the data folder
 
 number_of_aug = 2 # Number of augmented data to generate
@@ -70,3 +55,5 @@ Augmentation(open_data_path=open_file_name,
 
  # Continue with further processing or analysis
 ```
+
+### Package Structure:
