@@ -86,7 +86,8 @@ src/ #root file
     └── augmentation.py
 ```
 ### Class Diagram:
-    <p align="center">
+
+<p align="center">
     <br>
     <img src ="doc\Aug_class_diagram.drawio.png"/>
     <br>
