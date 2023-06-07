@@ -30,15 +30,20 @@ class Augmentation(object):
         self.open_data_path = open_data_path
         self.save_file_name = save_file_name
 
+        # It creates a folder to save inside 
         self.create_dest_folder(self.target_file_name)
         
+        # All the data in the file is taken and augmented in a loop
         for data_path in self.create_list_of_data(open_data_path = open_data_path):
             
+            # The image and label file with the same name as image is opened once
             image = self.label_factory(data_path[:-4])
             label = self.image_factory(data_path)
             
+            
             for num in range(number_of_aug):
                 
+                # The name of new file that will be augmented is created
                 data_name = data_path.split("\\")[-1][:-4] + "_aug" + str(num + 1)
                 
                 aug_image = dataAugmentor.ImgAug(image=image,
