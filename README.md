@@ -134,7 +134,7 @@ In the first part, the method creates the necessary file names and initializes t
             image = self.label_factory(data_path[:-4])
             label = self.image_factory(data_path)
             
-            
+            # The augmentation process is performed as much as the `number_of_aug` value  from the user
             for num in range(number_of_aug):
                 
                 # The name of new file that will be augmented is created
@@ -142,26 +142,28 @@ In the first part, the method creates the necessary file names and initializes t
 
 ```
 
-Here, The `self.create_dest_folder` method is responsible for creating the output folder if it doesn't already exist. `self.create_list_of_data` stores the name of the folder where the augmented images will be saved. The loop iterates over the files in the `data_folder` directory and obtains the paths to the corresponding image and label files using the `get_file_paths` method. The `open_image` and `open_label` methods are responsible for opening the image and label files, respectively.
+Here, The `self.create_dest_folder` method is responsible for creating the output folder if it doesn't already exist. `self.create_list_of_data` stores the path of the files which will be augmented . The loop iterates over the files in the `self.create_list_of_data` list and obtains the paths to the corresponding image and label files. The `self.label_factory` and `self.image_factory` methods are responsible for opening the image and label files, respectively.
 
 #### Part 2: Image Augmentation Processing
-The second part of the `__init__` method performs the actual augmentation processing. Within a nested loop, the augmentation techniques are applied to the image and label data to generate multiple augmented versions of the data.
+The second part of the `__init__` method performs the actual augmentation processing of images. Within a nested loop, the augmentation techniques are applied to the image to generate multiple augmented versions of the data.
 
-```
+```python
+                # The augmented image is created acording values that given users
                 aug_image = dataAugmentor.ImgAug(image=image,
                                                         x_shift=x_shift,
                                                         y_shift=y_shift).image_aug
                                 
-                    
+                # The augmented image is saved on target file   
                 dataSaver.ImgSav(target_file_path = self.target_file_name,
                                     img_aug = aug_image,
                                     data_name=data_name)
 ```
 
 #### Part 3: Label Augmentation Processing
-The second part of the `__init__` method performs the actual augmentation processing. Within a nested loop, the augmentation techniques are applied to the image and label data to generate multiple augmented versions of the data.
+The third part of the `__init__` method performs the actual augmentation processing of labels. Within a nested loop, the augmentation techniques are applied to the label data to generate multiple augmented versions of the data.
 
-```
+```python             
+                # If the extension of the read label file is '.xml', it is processed here
                 if self.ann.ext == ".xml":
                     
                     ann_aug = dataAugmentor.XmlAug(name=data_name,
@@ -173,7 +175,7 @@ The second part of the `__init__` method performs the actual augmentation proces
                                                                 ann_aug=ann_aug.annotate,
                                                                 data_name=data_name)
 
-                    
+                # If the extension of the read label file is '.txt', it is processed here    
                 elif self.ann.ext == ".txt":
                     
                     ann_aug = dataAugmentor.TxtAug(
@@ -187,3 +189,9 @@ The second part of the `__init__` method performs the actual augmentation proces
                                      ann_aug=ann_aug,
                                     data_name=data_name)
 ```
+
+## License
+This project is licensed under the MIT License. You are free to use, modify, and distribute this library in accordance with the terms specified in the license.
+
+## Support
+If you have any questions, suggestions, or need support, feel free to reach out to hakanaktas4541@gmail.com
