@@ -7,11 +7,13 @@ class DataAug(object):
         self.annotate = annotate
         self.x_shift = x_shift
         self.y_shift = y_shift
+        random_x = None
+        random_y = None       
         
-    @property
-    def get_random_x(self):
-        return random.randint(0, int(int(self.x_shift) * 2))
-    
-    @property
-    def get_random_y(self):
-        return random.randint(0, int(int(self.y_shift) * 2))
+    @classmethod
+    def get_random_x(cls, x_shift):
+        cls.random_x = random.randint(0, int(int(x_shift) * 2))
+        
+    @classmethod
+    def get_random_y(cls, y_shift):
+        cls.random_y = random.randint(0, int(int(y_shift) * 2))

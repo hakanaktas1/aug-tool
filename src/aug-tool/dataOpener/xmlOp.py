@@ -1,6 +1,6 @@
 from typing import IO
 from .annOp import AnnotationOpener
-
+from bs4 import BeautifulSoup
 
 # The XmlFileOpener class is a subclass of AnnotationOpener used for opening XML files.
 class XmlFileOpener(AnnotationOpener):
@@ -31,7 +31,7 @@ class XmlFileOpener(AnnotationOpener):
         try:
             with open(self.data_name, self.mode) as f:
                 xml_data = f.read()
-            return xml_data
+            return BeautifulSoup(xml_data, "xml")
         
         except Exception as e:
             print(f"An error occurred while opening file {self.data_name}: {e}")

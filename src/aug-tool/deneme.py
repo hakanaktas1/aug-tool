@@ -1,16 +1,30 @@
-import dataOpener
-import dataAugmentor
-import dataSaver
-file_path = r"C:\Users\hakan.aktas\Desktop\7146997_997_01_200323_064923_ORJ_cropped.txt"  # Replace with the actual path to your file
-output_file_path = r"C:\Users\hakan.aktas\Desktop" 
+import random
 
-image_width = 640
-image_height = 640
+class Parent:
+    random_value = None
 
-    
-if __name__ == '__main__':
-    
-    label = dataOpener.TxtFileOpener(file_path).data
-    aug_label = dataAugmentor.TxtAug(label,15,15,640,640).aug_anotate
-    dataSaver.TxtSav(output_file_path, aug_label, "asda")
-    
+    @classmethod
+    def generate_random_value(cls):
+        cls.random_value = random.randint(0, 10)
+
+class FirstSubclass(Parent):
+    def __init__(self):
+        super().__init__()
+        self.update_random_value()
+
+    def update_random_value(self):
+        self.generate_random_value()
+
+class SecondSubclass(Parent):
+    def __init__(self):
+        super().__init__()
+
+    def get_random_value(self):
+        return self.random_value
+
+# Creating instances of the subclasses
+first = FirstSubclass()
+second = SecondSubclass()
+
+# Accessing the random value in the second subclass
+print(second.get_random_value())

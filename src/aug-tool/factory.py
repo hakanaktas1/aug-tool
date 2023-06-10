@@ -37,8 +37,8 @@ class Augmentation(object):
         for data_path in self.create_list_of_data(open_data_path = open_data_path):
             
             # The image and label file with the same name as image is opened once
-            image = self.label_factory(data_path[:-4])
-            label = self.image_factory(data_path)
+            label = self.label_factory(data_path[:-4])
+            image = self.image_factory(data_path)
             
             
             for num in range(number_of_aug):
@@ -46,16 +46,18 @@ class Augmentation(object):
                 # The name of new file that will be augmented is created
                 data_name = data_path.split("\\")[-1][:-4] + "_aug" + str(num + 1)
                 
+                   
+                
                 aug_image = dataAugmentor.ImgAug(image=image,
                                         x_shift=x_shift,
                                         y_shift=y_shift).image_aug
                 
-    
+
                 dataSaver.ImgSav(target_file_path = self.target_file_name,
                                  img_aug = aug_image,
                                  data_name=data_name)
                 
-                if self.ann.ext == ".xml":
+                if label.ext == ".xml":
                     
                     ann_aug = dataAugmentor.XmlAug(name=data_name,
                                                 annotate= label.data,
@@ -67,7 +69,7 @@ class Augmentation(object):
                                                                 data_name=data_name)
 
                     
-                elif self.ann.ext == ".txt":
+                elif label.ext == ".txt":
                     
                     ann_aug = dataAugmentor.TxtAug(
                                                 annotate= label.data,
@@ -154,13 +156,13 @@ class Augmentation(object):
 
 if __name__ == '__main__':
     
-    open_file_name = r"C:\Users\hakan.aktas\Desktop\save\animal1"
-    save_file_name = r"C:\Users\hakan.aktas\Desktop\save\animal2"
+    open_file_name = r"C:\Users\hakan.aktas\Desktop\save\animal2"
+    save_file_name = r"C:\Users\hakan.aktas\Desktop\save"
     
-    number_of_aug = 2
+    number_of_aug = 20
     
     Augmentation(open_data_path=open_file_name,
             save_file_name=save_file_name,
             number_of_aug=number_of_aug,
-            x_shift=33,
-            y_shift=33)
+            x_shift=111,
+            y_shift=111)

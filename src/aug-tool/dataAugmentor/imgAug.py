@@ -11,12 +11,12 @@ class ImgAug(DataAug):
         self.contrast = contrast
         self.brigness = brigness
         self.sharpen = sharpen
-        self.image_aug = None   
+        self.image_aug = None  
+        self.get_random_x(x_shift)
+        self.get_random_y(y_shift) 
         self.carve_out()
         self.apply_adj()
         
-
-
         
     def carve_out(self):
         
@@ -29,7 +29,7 @@ class ImgAug(DataAug):
                             width - int(self.x_shift), height - int(self.y_shift)))
         # img1 = img1.rotate(5, fillcolor=(1,0,0), expand=False)
 
-        self.image_aug.paste(self.image, (int(self.get_random_x), int(self.get_random_y)))
+        self.image_aug.paste(self.image, (int(self.random_x), int(self.random_y)))
     
     def apply_adj(self):
         
