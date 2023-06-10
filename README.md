@@ -32,18 +32,14 @@ To install "aug-tool", you can use pip, the Python package manager. Open a termi
 * Allows augmentation of both images and their annotation files in formats such as XML, or TXT. 
 * Customizable augmentation parameters, including rotation angle, scaling factor, flipping direction, and more.
 
+## Output examples
 
 |            | Labeled data | With aug tool |
 |------------|----------|----------|
-| Example 1    | <img src="icons\exampleImg.png" alt="Alt Text" width="300" height="200">   | <img src="icons\example.gif" alt="Alt Text" width="300" height="200">   |
-| Example 2    | <img src="icons\example4.png" alt="Alt Text" width="300" height="250"> | <img src="icons\example4.gif" alt="Alt Text" width="300" height="250"> |
-| Example 3    | <img src="icons\example2Img.png" alt="Alt Text" width="300" height="200">    | <img src="icons\example2.gif" alt="Alt Text" width="300" height="200"> |
-| Example 4    | <img src="icons\example3.png" alt="Alt Text" width="300" height="200">    | <img src="icons\example3.gif" alt="Alt Text" width="300" height="200"> |
-
-
-
-
-
+| **Example 1**    | <img src="icons\exampleImg.png" alt="Alt Text" width="300" height="225">   | <img src="icons\example.gif" alt="Alt Text" width="300" height="225">   |
+| **Example 2**    | <img src="icons\example4.png" alt="Alt Text" width="300" height="250"> | <img src="icons\example4.gif" alt="Alt Text" width="300" height="250"> |
+| **Example 3**    | <img src="icons\example2Img.png" alt="Alt Text" width="300" height="200">    | <img src="icons\example2.gif" alt="Alt Text" width="300" height="200"> |
+| **Example 4**    | <img src="icons\example3.png" alt="Alt Text" width="300" height="200">    | <img src="icons\example3.gif" alt="Alt Text" width="300" height="200"> |
 
 
 ## Documentation
