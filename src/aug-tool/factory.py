@@ -37,20 +37,24 @@ class Augmentation(object):
         for data_path in self.create_list_of_data(open_data_path = open_data_path):
             
             # The image and label file with the same name as image is opened once
-            label = self.label_factory(data_path[:-4])
-            image = self.image_factory(data_path)
-            
+
             
             for num in range(number_of_aug):
                 
+                label = self.label_factory(data_path[:-4])
+                image = self.image_factory(data_path)
+            
                 # The name of new file that will be augmented is created
                 data_name = data_path.split("\\")[-1][:-4] + "_aug" + str(num + 1)
                 
-                   
-                
+                rx = dataAugmentor.dataAug.DataAug.get_random_x(x_shift=x_shift)
+                ry = dataAugmentor.dataAug.DataAug.get_random_y(y_shift=y_shift)
+                                
                 aug_image = dataAugmentor.ImgAug(image=image,
                                         x_shift=x_shift,
-                                        y_shift=y_shift).image_aug
+                                        y_shift=y_shift,
+                                        random_x=rx,
+                                        random_y=ry).image_aug
                 
 
                 dataSaver.ImgSav(target_file_path = self.target_file_name,
@@ -62,7 +66,9 @@ class Augmentation(object):
                     ann_aug = dataAugmentor.XmlAug(name=data_name,
                                                 annotate= label.data,
                                                 x_shift=x_shift,
-                                                y_shift=y_shift)
+                                                y_shift=y_shift,
+                                                random_x=rx,
+                                                random_y=ry)
                     
                     dataSaver.XmlSav(target_file_path = self.target_file_name,
                                                                 ann_aug=ann_aug.annotate,
@@ -76,7 +82,9 @@ class Augmentation(object):
                                                 x_shift=x_shift,
                                                 y_shift=y_shift,
                                                 width=aug_image.width,
-                                                height=aug_image.height).aug_anotate
+                                                height=aug_image.height,
+                                                random_x=rx,
+                                                random_y=ry).aug_anotate
                     
                     dataSaver.TxtSav(target_file_path = self.target_file_name,
                                      ann_aug=ann_aug,
@@ -164,5 +172,5 @@ if __name__ == '__main__':
     Augmentation(open_data_path=open_file_name,
             save_file_name=save_file_name,
             number_of_aug=number_of_aug,
-            x_shift=111,
-            y_shift=111)
+            x_shift=115,
+            y_shift=115)

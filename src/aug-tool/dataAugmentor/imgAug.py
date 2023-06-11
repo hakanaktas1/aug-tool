@@ -6,14 +6,17 @@ class ImgAug(DataAug):
     
     rotate_rate = None
     
-    def __init__(self, image, x_shift: int, y_shift: int, contrast:bool = False, brigness:bool = False, sharpen:bool = False ) -> None:
-        super().__init__(None, image, None, x_shift, y_shift)
+    def __init__(self, image, x_shift: int, y_shift: int, random_x:int, random_y:int, contrast:bool = False, brigness:bool = False, sharpen:bool = False) -> None:
+        super().__init__(None, None, None, x_shift, y_shift)
+        self.image = image
         self.contrast = contrast
         self.brigness = brigness
         self.sharpen = sharpen
-        self.image_aug = None  
-        self.get_random_x(x_shift)
-        self.get_random_y(y_shift) 
+        self.image_aug = None
+        self.x_shift = x_shift
+        self.y_shift = y_shift
+        self.random_x = random_x
+        self.random_y = random_y
         self.carve_out()
         self.apply_adj()
         

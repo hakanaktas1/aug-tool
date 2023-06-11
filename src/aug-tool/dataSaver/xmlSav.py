@@ -6,6 +6,8 @@ class XmlSav(AnnSav):
     
     def __init__(self, target_file_path: str, ann_aug, data_name: str) -> None:
         super().__init__(target_file_path, ann_aug, data_name)
+        self.data_name = data_name
+        self.ann_aug = ann_aug
         self.dataSaver()
         
     def dataSaver(self):

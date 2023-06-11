@@ -1,9 +1,11 @@
 from .annAug import AnnAug
 
 class TxtAug(AnnAug):
-    def __init__(self, annotate, x_shift: int, y_shift: int, width,height) -> None:
+    def __init__(self, annotate, x_shift: int, y_shift: int, width, height, random_x:int, random_y:int) -> None:
         super().__init__(None, annotate, x_shift, y_shift)
         self.aug_anotate = self.create_new_cords(width, height)
+        self.random_x = random_x
+        self.random_y = random_y
         
     def create_new_cords(self, width, height):
         lines = self.annotate.readlines() 
@@ -13,8 +15,8 @@ class TxtAug(AnnAug):
     
             values = line.strip().split()
 
-            aug_x_center = float(values[1]) + (self.get_random_x - int(self.x_shift))/width
-            aug_y_center = float(values[2]) + (self.get_random_y - int(self.y_shift))/height
+            aug_x_center = float(values[1]) + (self.random_x - int(self.x_shift))/width
+            aug_y_center = float(values[2]) + (self.random_y - int(self.y_shift))/height
             values[1] = str(aug_x_center)
             values[2] = str(aug_y_center)
 

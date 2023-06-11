@@ -5,15 +5,11 @@ class DataAug(object):
         self.name = name
         self.image = image
         self.annotate = annotate
-        self.x_shift = x_shift
-        self.y_shift = y_shift
-        random_x = None
-        random_y = None       
         
-    @classmethod
-    def get_random_x(cls, x_shift):
-        cls.random_x = random.randint(0, int(int(x_shift) * 2))
-        
-    @classmethod
-    def get_random_y(cls, y_shift):
-        cls.random_y = random.randint(0, int(int(y_shift) * 2))
+    @staticmethod
+    def get_random_x(x_shift):
+        return random.randint(0, int(int(x_shift) * 2))
+    @staticmethod
+    def get_random_y(y_shift):
+        return random.randint(0, int(int(y_shift) * 2))
+

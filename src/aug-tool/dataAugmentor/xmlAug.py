@@ -3,13 +3,18 @@ from .annAug import AnnAug
 import random
 
 class XmlAug(AnnAug):
-    def __init__(self, name: str, annotate, x_shift: int, y_shift: int) -> None:
-        super().__init__(name, annotate, x_shift, y_shift )
+    def __init__(self, name: str, annotate, x_shift: int, y_shift: int, random_x:int, random_y:int) -> None:
+        super().__init__(name, annotate, x_shift, y_shift)
+        self.name = name
+        self.annotate = annotate
         self.x_min_new = []
         self.x_max_new = []
         self.y_min_new = []
         self.y_max_new = []
-        
+        self.x_shift = x_shift
+        self.y_shift = y_shift
+        self.random_x = random_x
+        self.random_y = random_y
         self.create_new_cords()
         self.write_new_cords()
         
@@ -19,23 +24,23 @@ class XmlAug(AnnAug):
         random_noise  = random.randint(-2, 2)
         
         for i in self.annotate.find_all('xmin'):
-            self.x_min_new.append(int(i.text) + (AnnAug.random_x - int(self.x_shift)) + random_noise)
+            self.x_min_new.append(int(i.text) + (self.random_x - int(self.x_shift)) + random_noise)
         for i in self.annotate.find_all('xmax'):
-            self.x_max_new.append(int(i.text) + (AnnAug.random_x - int(self.x_shift)) + random_noise)
+            self.x_max_new.append(int(i.text) + (self.random_x - int(self.x_shift)) + random_noise)
         for i in self.annotate.find_all('ymin'):
-            self.y_min_new.append(int(i.text) + (AnnAug.random_y - int(self.y_shift)) + random_noise)
+            self.y_min_new.append(int(i.text) + (self.random_y - int(self.y_shift)) + random_noise)
         for i in self.annotate.find_all('ymax'):
-            self.y_max_new.append(int(i.text) + (AnnAug.random_y - int(self.y_shift)) + random_noise)
+            self.y_max_new.append(int(i.text) + (self.random_y - int(self.y_shift)) + random_noise)
 
 
         # for i in self.annotate.find_all('xmin'):
-        #     self.x_min_new.append(int(i.text) + (self.get_random_x - int(self.x_shift)))
+        #     self.x_min_new.append(int(i.text) + (self.random_x - int(self.x_shift)))
         # for i in self.annotate.find_all('xmax'):
-        #     self.x_max_new.append(int(i.text) + (self.get_random_x - int(self.x_shift)))
+        #     self.x_max_new.append(int(i.text) + (self.random_x - int(self.x_shift)))
         # for i in self.annotate.find_all('ymin'):
-        #     self.y_min_new.append(int(i.text) + (self.get_random_y - int(self.y_shift)))
+        #     self.y_min_new.append(int(i.text) + (self.random_y - int(self.y_shift)))
         # for i in self.annotate.find_all('ymax'):
-        #     self.y_max_new.append(int(i.text) + (self.get_random_y - int(self.y_shift)))
+        #     self.y_max_new.append(int(i.text) + (self.random_y - int(self.y_shift)))
 
     def write_new_cords(self):
         
