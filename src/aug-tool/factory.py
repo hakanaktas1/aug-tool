@@ -1,6 +1,6 @@
-import dataAugmentor
-import dataOpener
-import dataSaver
+from .dataAugmentor import *
+from .dataOpener import * 
+from .dataSaver import *
 import os
 from os.path import join, exists
 import logging
@@ -47,37 +47,37 @@ class Augmentation(object):
                 # The name of new file that will be augmented is created
                 data_name = data_path.split("\\")[-1][:-4] + "_aug" + str(num + 1)
                 
-                rx = dataAugmentor.dataAug.DataAug.get_random_x(x_shift=x_shift)
-                ry = dataAugmentor.dataAug.DataAug.get_random_y(y_shift=y_shift)
+                rx = dataAug.DataAug.get_random_x(x_shift=x_shift)
+                ry = dataAug.DataAug.get_random_y(y_shift=y_shift)
                                 
-                aug_image = dataAugmentor.ImgAug(image=image,
+                aug_image = ImgAug(image=image,
                                         x_shift=x_shift,
                                         y_shift=y_shift,
                                         random_x=rx,
                                         random_y=ry).image_aug
                 
 
-                dataSaver.ImgSav(target_file_path = self.target_file_name,
+                ImgSav(target_file_path = self.target_file_name,
                                  img_aug = aug_image,
                                  data_name=data_name)
                 
                 if label.ext == ".xml":
                     
-                    ann_aug = dataAugmentor.XmlAug(name=data_name,
+                    ann_aug = XmlAug(name=data_name,
                                                 annotate= label.data,
                                                 x_shift=x_shift,
                                                 y_shift=y_shift,
                                                 random_x=rx,
                                                 random_y=ry)
                     
-                    dataSaver.XmlSav(target_file_path = self.target_file_name,
+                    XmlSav(target_file_path = self.target_file_name,
                                                                 ann_aug=ann_aug.annotate,
                                                                 data_name=data_name)
 
                     
                 elif label.ext == ".txt":
-                    
-                    ann_aug = dataAugmentor.TxtAug(
+
+                    ann_aug = TxtAug(
                                                 annotate= label.data,
                                                 x_shift=x_shift,
                                                 y_shift=y_shift,
@@ -86,7 +86,7 @@ class Augmentation(object):
                                                 random_x=rx,
                                                 random_y=ry).aug_anotate
                     
-                    dataSaver.TxtSav(target_file_path = self.target_file_name,
+                    TxtSav(target_file_path = self.target_file_name,
                                      ann_aug=ann_aug,
                                     data_name=data_name)
                 else:
@@ -147,17 +147,17 @@ class Augmentation(object):
     def label_factory(self, path:str):
         
         if os.path.exists(path + ".xml"):
-            return dataOpener.XmlFileOpener(path + ".xml")
+            return XmlFileOpener(path + ".xml")
 
         elif os.path.exists(path + ".txt"):
-            return dataOpener.TxtFileOpener(path + ".txt")
+            return TxtFileOpener(path + ".txt")
        
         else:
             logging.exception('There is no any annotation file that has ext such as .xml or .txt in this directory')
             
     def image_factory(self, path:str):
         try:
-            return dataOpener.ImgOpener(path).data
+            return ImgOpener(path).data
         except:
             logging.exception('Could not open image file. (Check its extension.)')
         

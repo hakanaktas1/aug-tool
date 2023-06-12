@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: aug-tool
-Version: 0.0.5
+Version: 0.0.6
 Summary: A small package to increase your data for your machine learning project
 Home-page: https://github.com/hakanaktas1/aug-tool
 Author: Hakan Aktaş

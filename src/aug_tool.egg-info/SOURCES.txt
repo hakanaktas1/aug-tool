@@ -3,6 +3,12 @@ MANIFEST.in
 README.md
 pyproject.toml
 setup.cfg
+icons/example2Img.png
+icons/example3.png
+icons/example4.png
+icons/exampleImg.png
+icons/logo.png
+icons/logo2.png
 src/aug-tool/__init__.py
 src/aug-tool/deneme.py
 src/aug-tool/factory.py
@@ -27,4 +33,5 @@ src/aug-tool/dataSaver/xmlSav.py
 src/aug_tool.egg-info/PKG-INFO
 src/aug_tool.egg-info/SOURCES.txt
 src/aug_tool.egg-info/dependency_links.txt
+src/aug_tool.egg-info/requires.txt
 src/aug_tool.egg-info/top_level.txt
